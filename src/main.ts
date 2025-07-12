@@ -26,10 +26,10 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(process.env.PORT ?? 4000).then(() => {
+  await app.listen(process.env.API_PORT ?? 4000).then(() => {
     console.table({
-      url: `http://localhost:${process.env.PORT ?? 4000}`,
-      swagger: `http://localhost:${process.env.PORT ?? 4000}/api`,
+      url: `http://localhost:${process.env.API_PORT ?? 4000}`,
+      swagger: `http://localhost:${process.env.API_PORT ?? 4000}/api`,
     });
   });
 }
