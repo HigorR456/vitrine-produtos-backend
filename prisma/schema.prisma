@@ -23,3 +23,17 @@ model User {
   deletedAt    DateTime?
 }
 
+model Product {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+  price       Float
+  rating      Float
+  weight      Float
+  images      String[]
+  thumbnail   String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+  deletedAt   DateTime?
+}
