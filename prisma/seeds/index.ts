@@ -10,7 +10,8 @@ class Seed {
     const prisma = new PrismaClient();
 
     const products = await this.productsSeed.getData();
-    await prisma.user.createMany({ data: products });
+
+    await prisma.product.createMany({ data: products });
 
     await prisma.$disconnect();
   };

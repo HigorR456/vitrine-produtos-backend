@@ -1,6 +1,5 @@
 import { Product } from "generated/prisma";
 
-
 export class ProductSeed {
   constructor() {}
 
