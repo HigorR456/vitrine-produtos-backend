@@ -21,13 +21,18 @@ export class GetPaginatedProductsDto {
   @Min(1)
   limit: number
 
-  @ApiPropertyOptional({ enum: ['id', 'title'], default: 'id' })
-  @IsIn(['id', 'title'])
+  @ApiPropertyOptional({ enum: ['id', 'title', 'price', 'category'], default: 'id' })
+  @IsIn(['id', 'title', 'price', 'category'])
   @IsOptional()
-  sortBy: 'id' | 'title' = 'id';
+  sortBy: 'id' | 'title' | 'price' | 'category' = 'id';
 
   @ApiPropertyOptional({ enum: ['asc', 'desc'], default: 'asc' })
   @IsIn(['asc', 'desc'])
   @IsOptional()
   sortOrder: 'asc' | 'desc' = 'asc';
+
+  @ApiPropertyOptional({ enum: ['beauty', 'fragrances', 'furniture', 'groceries', 'home-decoration', 'kitchen-accessories', 'laptops', 'mens-shirts'], default: 'asc' })
+  @IsIn(['beauty', 'fragrances', 'furniture', 'groceries', 'home-decoration', 'kitchen-accessories', 'laptops', 'mens-shirts'])
+  @IsOptional()
+  category: 'beauty' | 'fragrances' | 'furniture' | 'groceries' | 'home-decoration' | 'kitchen-accessories' | 'laptops' | 'mens-shirts';
 }

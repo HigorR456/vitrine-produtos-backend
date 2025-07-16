@@ -5,11 +5,11 @@ import { GetPaginatedProductsDto } from './dto/product.dto';
 import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { PaginationInterface } from 'src/shared/interface/paginated-interface';
 
-@Controller('product')
+@Controller()
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Get()
+  @Get('products')
   @ApiOperation({ summary: 'Get paginated products' })
   @ApiOkResponse({
     description: 'List of paginated products',
@@ -33,7 +33,7 @@ export class ProductController {
     return this.productService.getPaginatedProducts(query);
   }
 
-  @Get(':id')
+  @Get('product/:id')
   @ApiOperation({ summary: 'Get product' })
   @ApiOkResponse({
     description: 'Full product data',

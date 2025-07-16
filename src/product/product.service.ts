@@ -6,16 +6,19 @@ import { GetPaginatedProductsDto } from './dto/product.dto';
 export class ProductService {
   constructor(private ormService: PrismaService) {}
 
-  async getPaginatedProducts({ page, limit, sortBy, sortOrder }: GetPaginatedProductsDto) {
+  async getPaginatedProducts({ page, limit, sortBy, sortOrder, category }: GetPaginatedProductsDto) {
     const products = await this.ormService.product.findMany({
       orderBy: {
         [sortBy]: sortOrder,
       },
       take: limit,
       skip: (page - 1) * limit,
+      ...(category && { where: { category } })
     });
 
-    const total = await this.ormService.product.count();
+    const total = await this.ormService.product.count({
+      ...(category && { where: { category } })
+    });
 
     const return_object = {
       data: products,
