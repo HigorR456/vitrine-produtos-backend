@@ -1,8 +1,8 @@
-import { Controller, Get, Param, Query, Res } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { PaginatedProductEntity, ProductEntity } from './entities/product.entity';
 import { GetPaginatedProductsDto } from './dto/product.dto';
-import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { PaginationInterface } from 'src/shared/interface/paginated-interface';
 
 @Controller()

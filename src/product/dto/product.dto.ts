@@ -21,10 +21,10 @@ export class GetPaginatedProductsDto {
   @Min(1)
   limit: number
 
-  @ApiPropertyOptional({ enum: ['id', 'title', 'price', 'category'], default: 'id' })
-  @IsIn(['id', 'title', 'price', 'category'])
+  @ApiPropertyOptional({ enum: ['id', 'title', 'price', 'category', 'rating'], default: 'rating' })
+  @IsIn(['id', 'title', 'price', 'category', 'rating'])
   @IsOptional()
-  sortBy: 'id' | 'title' | 'price' | 'category' = 'id';
+  sortBy: 'id' | 'title' | 'price' | 'category' | 'rating' = 'rating';
 
   @ApiPropertyOptional({ enum: ['asc', 'desc'], default: 'asc' })
   @IsIn(['asc', 'desc'])

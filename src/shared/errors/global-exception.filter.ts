@@ -4,6 +4,7 @@ import {
   ArgumentsHost,
   HttpException,
   HttpStatus,
+  ForbiddenException,
 } from '@nestjs/common';
 import { Logger } from '@nestjs/common';
 
@@ -19,13 +20,18 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
     let message = 'Internal server error';
 
-    if (exception instanceof HttpException) {
+    if (exception instanceof HttpException || exception instanceof ForbiddenException) {
       status = exception.getStatus();
       const responseBody = exception.getResponse();
       message =
         typeof responseBody === 'string'
           ? responseBody
           : (responseBody as any).message || message;
+    }
+
+    if ((exception as any).code === "EBADCSRFTOKEN") {
+      status = 403;
+      message = "ForbiddenError: invalid csrf token"
     }
 
     logger.error(

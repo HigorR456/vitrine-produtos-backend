@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UserService } from './user.service';
-import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiCookieAuth, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { UserResponseDto } from './dto/user.dto';
 import { UserEntity } from './entities/user.entity';
 import { User } from '../shared/decorators/user.decorator';
@@ -13,7 +13,7 @@ export class UserController {
   @Get('me')
   @UseGuards(AuthGuard('jwt'))
   @ApiOperation({ summary: 'Get authenticated user profile', description: 'Retrieve profile information of the authenticated user' })
-  @ApiBearerAuth('accessToken')
+  @ApiCookieAuth('access_token')
   @ApiOkResponse({ description: "User profile information", type: UserResponseDto, example: UserResponseDto })
   @ApiUnauthorizedResponse({ description: 'Missing or invalid JWT token' })
   async getProfile(

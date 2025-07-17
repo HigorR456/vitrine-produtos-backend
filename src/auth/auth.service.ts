@@ -3,7 +3,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { AuthResponseDto, AuthParamsDto } from './dto/auth.dto';
+import { AuthParamsDto } from './dto/auth.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -15,7 +15,7 @@ export class AuthService {
     private jwt: JwtService,
   ) {}
 
-  async validateUser({ email, password }: AuthParamsDto): Promise<AuthResponseDto> {
+  async validateUser({ email, password }: AuthParamsDto) {
     const user = await this.ormService.user.findUnique({ where: { email } });
 
     if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
@@ -26,12 +26,10 @@ export class AuthService {
 
     return {
       accessToken: this.jwt.sign(payload),
-      tokenType: 'Bearer',
-      expiresIn: process.env.JWT_EXPIRATION,
     };
   }
 
-  async register({ email, password }: AuthParamsDto): Promise<AuthResponseDto> {
+  async register({ email, password }: AuthParamsDto) {
     const existingUser = await this.ormService.user.findUnique({
       where: { email },
     });
@@ -53,8 +51,6 @@ export class AuthService {
 
     return {
       accessToken: this.jwt.sign(payload),
-      tokenType: 'Bearer',
-      expiresIn: process.env.JWT_EXPIRATION,
     };
   }
 }

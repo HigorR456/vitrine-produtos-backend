@@ -20,20 +20,8 @@ export class AuthParamsDto {
 
 export class AuthResponseDto {
   @ApiProperty({
-    description: 'The access token',
-    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+    description: 'Success message',
+    example: 'User logged/registered successfully'
   })
-  accessToken: string;
-
-  @ApiProperty({
-    description: 'The type of the token',
-    example: 'Bearer'
-  })
-  tokenType: string;
-
-  @ApiProperty({
-    description: 'The expiration time of the token',
-    example: '3600s'
-  })
-  expiresIn: string;
+  message: string;
 }
