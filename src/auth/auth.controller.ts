@@ -68,12 +68,14 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response
   ) {
     const authResult = await this.authService.register(registerPayload);
+    const isProduction = process.env.NODE_ENV === 'production';
 
     res.cookie('access_token', authResult.accessToken, {
       httpOnly: true,
-      secure: true,
-      sameSite: 'none',
+      secure: isProduction,
+      sameSite: isProduction ? 'none' : 'lax',
       maxAge: parseInt(process.env.JWT_EXPIRATION || '3600', 10) * 1000,
+      path: '/',
     });
 
     return { message: 'User registered successfully' };
