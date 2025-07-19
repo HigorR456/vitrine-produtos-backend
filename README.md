@@ -1,98 +1,125 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Vitrine de Produtos
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API RESTful para e-commerce, construída com TypeScript, NestJS e Prisma, com foco em fornecer endpoints, seguros e fáceis de consumir no frontend.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Funcionalidades
 
-## Description
+✅ Autenticação de Usuário
+- Cadastro e login de usuários (/register e /login)
+- Autenticação via JWT armazenado em cookie HTTP-Only
+- Proteção CSRF com o middleware csurf
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+📦 Produtos
+- Listagem paginada de produtos (/produtos)
+- Filtros opcionais por categoria, ordenação por preço, avaliação ou categoria
+- Suporte a paginação via parâmetros page e limit
+- Detalhamento de produto por id (/produtos/[id])
 
-## Project setup
+🔐 Rotas Protegidas
+- Informações do usuário logado (/user/me)
 
-```bash
-$ npm install
-```
+## Tecnologias Utilizadas
 
-## Compile and run the project
+- TypeScript
+- NestJS
+- Prisma ORM
+- Jest (testes)
+- ESLint & Prettier (linting e formatação)
+- Docker & Docker Compose
+- Swagger (documentação da API com @nestjs/swagger e swagger-ui-express)
 
-```bash
-# development
-$ npm run start
+## Requisitos
 
-# watch mode
-$ npm run start:dev
+Para executar este projeto localmente, você precisará ter instalado:
 
-# production mode
-$ npm run start:prod
-```
+- [Docker](https://www.docker.com/get-started/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Run tests
+## Como Executar
+
+### 1. Clone o repositório
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/HigorR456/vitrine-produtos-backend.git
+cd vitrine-produtos-backend
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Configure as variáveis de ambiente
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+cp .env.example .env
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Edite o arquivo `.env` conforme necessário.
 
-## Resources
+### 3. Inicie a aplicação com Docker Compose
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+docker compose up
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+A aplicação estará disponível em `http://localhost:4000` (ou na porta configurada no arquivo `.env`).
 
-## Support
+Para executar em segundo plano:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+docker compose up -d
+```
 
-## Stay in touch
+### 4. Parar a aplicação
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+docker compose down
+```
 
-## License
+## Documentação da API
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+A documentação da API foi gerada utilizando as bibliotecas **`@nestjs/swagger`** e **`swagger-ui-express`**, seguindo a especificação **OpenAPI 3.0.0**. Ela fornece uma interface interativa para explorar e testar os endpoints da aplicação.
+
+### Acessando a Documentação
+
+Após iniciar a aplicação, você pode acessar a documentação da API através da URL:
+```bash
+http://localhost:4000/api
+```
+
+A documentação informa todos os endpoints da API, com detalhes de parâmetros, respostas, e possíveis erros.
+
+
+## Desenvolvimento
+
+### Comandos úteis
+
+```bash
+# Instalar dependências
+npm install
+
+# Executar em modo de desenvolvimento
+npm dev
+
+# Executar testes
+npm test
+
+# Verificar e corrigir problemas de linting
+npm lint
+
+# Gerar cliente Prisma
+npx prisma generate
+
+# Executar migrations
+npx prisma migrate deploy
+
+# Executar seeds
+npx prisma db seed
+
+# Executar migrations, gerar cliente Prisma, resetar banco e executar seeds
+npx prisma migrate reset -f
+```
+
+## Licenciamento
+
+ISC
+
+---
+
+Desenvolvido por [Higor Ruan](https://github.com/HigorR456)
