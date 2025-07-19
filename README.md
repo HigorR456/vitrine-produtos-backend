@@ -28,6 +28,10 @@ API RESTful para e-commerce, construída com TypeScript, NestJS e Prisma, com fo
 - Docker & Docker Compose
 - Swagger (documentação da API com @nestjs/swagger e swagger-ui-express)
 
+## Pré-requisitos
+
+- Node.js >=20.0.0 <23
+
 ## Requisitos
 
 Para executar este projeto localmente, você precisará ter instalado:
