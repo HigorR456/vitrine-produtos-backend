@@ -4,14 +4,14 @@ import { IsEmail, IsString, MinLength } from 'class-validator';
 export class AuthParamsDto {
   @ApiProperty({
     description: 'The user email',
-    example: 'john.doe@email.com'
+    example: 'john.doe@email.com',
   })
   @IsEmail()
   email: string;
 
   @ApiProperty({
     description: 'The user password',
-    example: '123456'
+    example: '123456',
   })
   @IsString()
   @MinLength(6)
@@ -21,7 +21,7 @@ export class AuthParamsDto {
 export class AuthResponseDto {
   @ApiProperty({
     description: 'Success message',
-    example: 'User logged/registered successfully'
+    example: 'User logged/registered successfully',
   })
   message: string;
 }

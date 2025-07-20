@@ -2,16 +2,16 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, IsDate } from 'class-validator';
 
 export class UserResponseDto {
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Unique identifier of the user',
-    example: '123e4567-e89b-12d3-a456-426614174000'
+    example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @IsString()
   id: string;
 
   @ApiProperty({
     description: 'Email address of the user',
-    example: 'john.doe@email.com'
+    example: 'john.doe@email.com',
   })
   @IsEmail()
   email: string;

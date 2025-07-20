@@ -9,14 +9,14 @@ export class UserService {
   async getProfile(id: string): Promise<UserResponseDto> {
     return await this.ormService.user.findUnique({
       where: {
-        id
+        id,
       },
       select: {
         id: true,
         email: true,
         updatedAt: true,
         createdAt: true,
-      }
+      },
     });
   }
 }

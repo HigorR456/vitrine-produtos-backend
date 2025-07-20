@@ -7,6 +7,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Logger } from '@nestjs/common';
+import { Request, Response } from 'express';
 
 const logger = new Logger('GlobalExceptionFilter');
 
@@ -14,31 +15,47 @@ const logger = new Logger('GlobalExceptionFilter');
 export class GlobalExceptionFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
-    const request = ctx.getRequest();
+    const response: Response = ctx.getResponse();
+    const request: Request = ctx.getRequest();
 
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
     let message = 'Internal server error';
 
-    if (exception instanceof HttpException || exception instanceof ForbiddenException) {
+    if (
+      exception instanceof HttpException ||
+      exception instanceof ForbiddenException
+    ) {
       status = exception.getStatus();
       const responseBody = exception.getResponse();
       message =
         typeof responseBody === 'string'
           ? responseBody
-          : (responseBody as any).message || message;
+          : (responseBody as { message: string }).message || message;
     }
 
-    if ((exception as any).code === "EBADCSRFTOKEN") {
+    if (
+      typeof exception === 'object' &&
+      exception !== null &&
+      'code' in exception &&
+      (exception as { code: string }).code === 'EBADCSRFTOKEN'
+    ) {
       status = 403;
-      message = "ForbiddenError: invalid csrf token"
+      message = 'ForbiddenError: invalid csrf token';
     }
+
+    const stack =
+      typeof exception === 'object' &&
+      exception !== null &&
+      'stack' in exception &&
+      typeof (exception as { stack: unknown }).stack === 'string'
+        ? exception.stack
+        : exception;
 
     logger.error(
       `Error processing request ${request.method} ${request.url}`,
-      (exception as any)?.stack || exception as any,
+      stack,
     );
-    
+
     response.status(status).json({
       statusCode: status,
       message,
