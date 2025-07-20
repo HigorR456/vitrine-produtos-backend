@@ -1,27 +1,30 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { IsIn, IsInt, IsOptional, Min } from "class-validator";
+import { ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsIn, IsInt, IsOptional, Min } from 'class-validator';
 
 export class GetPaginatedProductsDto {
   @ApiPropertyOptional({
     description: 'Page number',
-    example: 1
+    example: 1,
   })
   @Type(() => Number)
   @IsInt()
   @Min(1)
-  page: number
+  page: number;
 
   @ApiPropertyOptional({
     description: 'Number of products per page',
-    example: 10
+    example: 10,
   })
   @Type(() => Number)
   @IsInt()
   @Min(1)
-  limit: number
+  limit: number;
 
-  @ApiPropertyOptional({ enum: ['id', 'title', 'price', 'category', 'rating'], default: 'rating' })
+  @ApiPropertyOptional({
+    enum: ['id', 'title', 'price', 'category', 'rating'],
+    default: 'rating',
+  })
   @IsIn(['id', 'title', 'price', 'category', 'rating'])
   @IsOptional()
   sortBy: 'id' | 'title' | 'price' | 'category' | 'rating' = 'rating';
@@ -31,8 +34,37 @@ export class GetPaginatedProductsDto {
   @IsOptional()
   sortOrder: 'asc' | 'desc' = 'asc';
 
-  @ApiPropertyOptional({ enum: ['beauty', 'fragrances', 'furniture', 'groceries', 'home-decoration', 'kitchen-accessories', 'laptops', 'mens-shirts'], default: 'asc' })
-  @IsIn(['beauty', 'fragrances', 'furniture', 'groceries', 'home-decoration', 'kitchen-accessories', 'laptops', 'mens-shirts'])
+  @ApiPropertyOptional({
+    enum: [
+      'beauty',
+      'fragrances',
+      'furniture',
+      'groceries',
+      'home-decoration',
+      'kitchen-accessories',
+      'laptops',
+      'mens-shirts',
+    ],
+    default: 'asc',
+  })
+  @IsIn([
+    'beauty',
+    'fragrances',
+    'furniture',
+    'groceries',
+    'home-decoration',
+    'kitchen-accessories',
+    'laptops',
+    'mens-shirts',
+  ])
   @IsOptional()
-  category: 'beauty' | 'fragrances' | 'furniture' | 'groceries' | 'home-decoration' | 'kitchen-accessories' | 'laptops' | 'mens-shirts';
+  category:
+    | 'beauty'
+    | 'fragrances'
+    | 'furniture'
+    | 'groceries'
+    | 'home-decoration'
+    | 'kitchen-accessories'
+    | 'laptops'
+    | 'mens-shirts';
 }

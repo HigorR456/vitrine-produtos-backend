@@ -3,11 +3,11 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { GlobalExceptionFilter } from './shared/errors/global-exception.filter';
 import * as cookieParser from 'cookie-parser';
-import * as csurf from 'csurf'
+import * as csurf from 'csurf';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const isProduction = process.env.NODE_ENV === 'production'
+  const isProduction = process.env.NODE_ENV === 'production';
 
   app.enableCors({
     origin: [process.env.FRONTEND_DOMAIN],
@@ -45,4 +45,4 @@ async function bootstrap() {
     });
   });
 }
-bootstrap();
+void bootstrap();
