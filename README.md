@@ -5,9 +5,10 @@ API RESTful para e-commerce, construída com TypeScript, NestJS e Prisma, com fo
 ## Funcionalidades
 
 ✅ Autenticação de Usuário
-- Cadastro e login de usuários ***(/register e /login)***
+- Cadastro, login de usuários e logout ***(/register, /login) e /logout***
 - Autenticação via **JWT** armazenado em **cookie HTTP-Only**
-- Proteção **CSRF** com o middleware csurf
+- Proteção **CSRF** no middleware (previne uso malicioso de cookies HTTP-only em requisições forjadas)
+- Proteção **CORS** no middleware (permite envio de cookies apenas de domínios confiáveis)
 
 📦 Produtos
 - Listagem paginada de produtos ***(/produtos)***
@@ -17,6 +18,14 @@ API RESTful para e-commerce, construída com TypeScript, NestJS e Prisma, com fo
 
 🔐 Rotas Protegidas
 - Informações do usuário logado ***(/user/me)***
+
+## Extras
+
+- Dockerfile e docker-compose.yml
+- Autenticação
+- Teste unitário (apenas do serviço de autenticação)
+- Pipeline básico de lint e teste via Github Actions
+- Banco de dados local (PostgreSQL)
 
 ## Tecnologias Utilizadas
 
