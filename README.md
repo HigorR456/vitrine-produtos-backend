@@ -19,6 +19,14 @@ API RESTful para e-commerce, construída com TypeScript, NestJS e Prisma, com fo
 🔐 Rotas Protegidas
 - Informações do usuário logado ***(/user/me)***
 
+## Extras
+
+- Dockerfile e docker-compose.yml
+- Autenticação
+- Teste unitário (apenas do serviço de autenticação)
+- Pipeline básico de lint e teste via Github Actions
+- Banco de dados local (PostgreSQL)
+
 ## Tecnologias Utilizadas
 
 - TypeScript
